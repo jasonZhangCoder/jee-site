@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="tool/MBG/mysql-connector-java-5.1.12.jar" />
+
+	<context id="ho" targetRuntime="MyBatis3" defaultModelType="flat">
+
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<plugin type="com.hunteron.plugin.mybatis.ModelExampleLimitPlugin" />
+		<plugin type="com.hunteron.plugin.mybatis.ModelJavaDocPlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		    connectionURL="jdbc:mysql://192.168.50.33:3306/ho_dev"
+			userId="root"
+			password="123456">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.hunteron.user.model" targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mybatis.sqlmap.user" targetProject="src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.hunteron.user.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		<!-- <table tableName="tb_jobhunter_complain" domainObjectName="JobhunterComplain">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+		
+		<!-- <table tableName="tb_hr_cooperation_hh" domainObjectName="HrCooperationHh">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		
+		<!-- <table tableName="tb_jobhunter_custom" domainObjectName="JobhunterCustom">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+			<columnOverride column="close" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table> -->
+		
+		<!-- <table tableName="position" domainObjectName="Position">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT 
+					LAST_INSERT_ID()"
+				identity="true" type="post" />
+			<columnOverride column="isPrivate" javaType="java.lang.Boolean"
+				jdbcType="INTEGER" />
+			<columnOverride column="isPublic" javaType="java.lang.Boolean"
+				jdbcType="INTEGER" />
+			<columnOverride column="isContract" javaType="java.lang.Boolean"
+				jdbcType="INTEGER" />
+			<columnOverride column="hr_priority" property="hrPriority" />
+			<columnOverride column="service_admin" property="serviceAdmin" />
+			<columnOverride column="publish_time" property="publishTime" />
+			<columnOverride column="investigated" javaType="java.lang.Boolean"
+				jdbcType="TINYINT" />
+			<columnOverride column="position_style" property="positionStyle" />
+			<columnOverride column="salary_type" property="salaryType" />
+			<columnOverride column="division_id" property="divisionId" />
+			<columnOverride column="browse_count" property="browseCount" />
+		</table> -->
+		<!-- <table tableName="tb_jobhunter" domainObjectName="Jobhunter">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table> -->
+		<!-- <table tableName="tb_jobhunter_work_exp" domainObjectName="JobhunterWorkExp">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table>
+		<table tableName="tb_jobhunter_edu_exp" domainObjectName="JobhunterEduExp">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table>
+		<table tableName="tb_jobhunter_project_exp" domainObjectName="JobhunterProjectExp">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table>
+		<table tableName="tb_jobhunter_cooperate" domainObjectName="JobhunterCooperate">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table>
+		<table tableName="tb_jobhunter_recommend" domainObjectName="JobhunterRecommend">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table>
+		<table tableName="tb_jobhunter_event" domainObjectName="JobhunterEvent">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table>
+		<table tableName="tb_jobhunter_event_position" domainObjectName="JobhunterEventPosition">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+		
+		<!-- <table tableName="tb_hot_position" domainObjectName="HotPosition">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_hh_talent_category" domainObjectName="HhTalentCategory">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table> -->
+		
+		<!-- <table tableName="tb_hh_talent_category_defunct" domainObjectName="HhTalentCategoryDefunct">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		</table> -->
+		<!--
+		<table tableName="tb_chat_dialog" domainObjectName="ChatDialog">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		</table> -->
+		<!-- <table tableName="tb_common_contact" domainObjectName="CommonContact">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table tableName="tb_mobile_setting" domainObjectName="MobileSetting">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_enterprise_collection" domainObjectName="EnterpriseCollection">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_chat_unread_content" domainObjectName="ChatUnreadContent">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table tableName="tb_chat_content" domainObjectName="ChatContent">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_chat_getui_log" domainObjectName="ChatGetuiLog">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_chat_group" domainObjectName="ChatGroup">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_chat_group_user" domainObjectName="ChatGroupUser">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!--  
+		<table tableName="tb_mobile_user" domainObjectName="MobileUser" > 
+			<property name="useActualColumnNames" value="false"/>
+	    </table>-->
+	    <!-- 
+		<table tableName="tb_user_company_apply_leave" domainObjectName="UserCompanyApplyLeave">
+			<property name="useActualColumnNames" value="false" />
+		</table>-->	
+		<!-- <table tableName="tb_hunter_report" domainObjectName="HunterReport">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_hh_company_statistics" domainObjectName="HhCompanyStatistics">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_enterprise_division" domainObjectName="EnterpriseDivision">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="hd_talent" domainObjectName="Talent">
+		 	<property name="useActualColumnNames" value="true"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+			<columnOverride column="marital_status" property="maritalStatus" />
+			<columnOverride column="id_card" property="idCard" />
+			<columnOverride column="expect_annual_salary" property="expectAnnualSalary" />
+			<columnOverride column="english_name" property="englishName" />
+			<columnOverride column="marital_status" property="maritalStatus" />
+			<columnOverride column="expect_city" property="expectCity" />
+			<columnOverride column="update_user_id" property="updateUserId" />
+			<columnOverride column="resume_id" property="resumeId" />
+			<columnOverride column="default_recommand_report_id" property="defaultRecommandReportId" />
+			<columnOverride column="post_recommand_report_id" property="postRecommandReportId" />
+			<columnOverride column="self_evaluation" property="selfEvaluation" />
+			<columnOverride column="salary_desc" property="salaryDesc" />
+			<columnOverride column="current_salary" property="currentSalary" />
+			<columnOverride column="current_salary_months" property="currentSalaryMonths" />
+			<columnOverride column="expect_salary" property="expectSalary" />
+			<columnOverride column="expect_salary_months" property="expectSalaryMonths" />
+			<columnOverride column="other_welfare" property="otherWelfare" />
+			<columnOverride column="extra_msg" property="extraMsg" />
+			<columnOverride column="apply_job_status" property="applyJobStatus" />
+			<columnOverride column="expect_industry" property="expectIndustry" />
+			<columnOverride column="expect_function" property="expectFunction" />
+			<columnOverride column="open_status" property="openStatus" />
+			<columnOverride column="company_id" property="companyId" />
+			<columnOverride column="create_user_id" property="createUserId" />
+			<columnOverride column="old_open_status" property="oldOpenStatus" />
+			<columnOverride column="hh_category_id" property="hhCategoryId" />
+			<columnOverride column="start_work_year" property="startWorkYear" />
+		 </table> -->
+		 <!--  <table tableName="candidate" domainObjectName="Candidate">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT 
+					LAST_INSERT_ID()"
+				identity="true" type="post" />
+			<columnOverride column="hr_priority" property="hrPriority" />
+			<columnOverride column="last_status" property="lastStatus" />
+			<columnOverride column="undetermined_reason" property="undeterminedReason" />
+			<columnOverride column="undetermined_time" property="undeterminedTime" />
+			<columnOverride column="marital_status" property="maritalStatus" />
+			<columnOverride column="id_card" property="idCard" />
+			<columnOverride column="city_id" property="cityId" />
+			<columnOverride column="expect_city" property="expectCity" />
+			<columnOverride column="city_id" property="cityId" />
+			<columnOverride column="recommand_report_id" property="recommandReportId" />
+			<columnOverride column="degree_id" property="degreeId" />
+			<columnOverride column="self_evaluation" property="selfEvaluation" />
+			<columnOverride column="salary_desc" property="salaryDesc" />
+			<columnOverride column="other_welfare" property="otherWelfare" />
+			<columnOverride column="extra_msg" property="extraMsg" />
+			<columnOverride column="apply_job_status" property="applyJobStatus" />
+			<columnOverride column="language_type_id" property="languageTypeId" />
+			<columnOverride column="language_level_id" property="languageLevelId" />
+			<columnOverride column="other_language" property="otherLanguage" />
+			<columnOverride column="expect_industry" property="expectIndustry" />
+			<columnOverride column="expect_function" property="expectFunction" />
+			<columnOverride column="primal_referee_id" property="primalRefereeId" />
+			<columnOverride column="old_head_hunter_id" property="oldHeadHunterId" />
+			<columnOverride column="english_name" property="englishName" />
+		</table> -->
+		<!-- <table tableName="tb_language_level" domainObjectName="LanguageLevel">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table>
+		 <table tableName="tb_language_type" domainObjectName="LanguageType">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table>
+		 <table tableName="tb_talent_language" domainObjectName="TalentLanguage">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_candidate_language" domainObjectName="CandidateLanguage">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		 <!-- <table tableName="tb_candidate_industry_function" domainObjectName="CandidateIndustryFunction">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_candidate_recommand_report" domainObjectName="CandidateRecommandReport">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+			
+		<!-- <table tableName="hd_degree" domainObjectName="Degree">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		
+		<!-- <table tableName="tb_cdd_standard_record" domainObjectName="CandidateStandardRecord">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 
+		<!--  <table tableName="tb_talent_standard_record" domainObjectName="TalentStandardRecord">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 
+		<!-- <table tableName="tb_user_identity" domainObjectName="UserIdentity">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		<!-- <table tableName="tb_hh_statistics" domainObjectName="HhStatistics">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		
+		<!-- <table tableName="tb_admin_mission" domainObjectName="AdminMission">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+        </table> -->
+
+        <!-- <table tableName="tb_message" domainObjectName="Message">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+        </table> -->
+		
+		<!--  <table tableName="hd_talent_industry" domainObjectName="TalentIndustry">
+			<property name="useActualColumnNames" value="true" />
+			<columnOverride column="industry_name" property="industryName" />
+			<columnOverride column="function_name" property="functionName" />
+		</table> -->
+		<!--  <table tableName="tb_talent_contact" domainObjectName="TalentContact">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 <!--  
+		 <table tableName="tb_talent_resume" domainObjectName="TalentResume">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 <!-- <table tableName="tb_talent_resume_work_exp" domainObjectName="TalentResumeWorkExp">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		<!--  
+		 <table tableName="tb_talent_resume_company_exp" domainObjectName="TalentResumeCompanyExp">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		<!--  <table tableName="tb_talent_resume_company_work_exp" domainObjectName="TalentResumeCompanyWorkExp">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> --> 
+		<!-- <table tableName="tb_talent_resume_project_exp" domainObjectName="TalentResumeProjectExp">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 <!--  <table tableName="tb_talent_resume_edu_exp" domainObjectName="TalentResumeEduExp">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 <!-- <table tableName="tb_talent_recommand_report" domainObjectName="TalentRecommandReport">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 
+		<!-- <table tableName="tb_custom_position_reward" domainObjectName="CustomPositionReward">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+	<!-- 	 <table tableName="tb_position_reward" domainObjectName="PositionReward">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 
+		 <!-- <table tableName="tb_candidate_grab" domainObjectName="CandidateGrab">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table>
+		 <table tableName="tb_candidate_grab_history" domainObjectName="CandidateGrabHistory">
+		 	<property name="useActualColumnNames" value="false"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		 </table> -->
+		 
+<!-- 		<table tableName="tb_unread_placement" domainObjectName="UnreadPlacement"> -->
+<!-- 		 	<property name="useActualColumnNames" value="false"/> -->
+<!-- 		 </table> -->
+<!-- 		 <table tableName="tb_unread_payment" domainObjectName="UnreadPayment"> -->
+<!-- 		 	<property name="useActualColumnNames" value="false"/> -->
+<!-- 		 </table> -->
+		 
+		<!-- <table tableName="tb_evaluation_record" domainObjectName="EvaluationRecord"> 
+			<property name="useActualColumnNames" value="false"/> 
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+		</table> -->
+		<!-- <table tableName="hh_capability_lkp" domainObjectName="HhCapability"> 
+			<property name="useActualColumnNames" value="false"/> 
+			<columnOverride column="ACT_RATE" property="actRate" javaType="String"/>
+			<columnOverride column="S_KDJ" property="skdj" javaType="String"/>
+			<columnOverride column="S_AKDJ" property="sakdj" javaType="String"/>
+			<columnOverride column="MSL" property="msl" javaType="String"/>
+			<columnOverride column="AMSL" property="amsl" javaType="String"/>
+			<columnOverride column="DGL" property="dgl" javaType="String"/>
+			<columnOverride column="ADGL" property="adgl" javaType="String"/>
+			<columnOverride column="S_YJ" property="syj" javaType="Long"/>
+			<columnOverride column="S_YJ_ALL" property="syjAll" javaType="Long"/>
+		</table> -->
+		<!-- <table tableName="connection" domainObjectName="Connection">
+			<property name="useActualColumnNames" value="false" />
+		</table> -->
+		
+		<!-- <table tableName="tb_enterprise_hh_category" domainObjectName="EnterpriseHhCategory">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT 
+				LAST_INSERT_ID()"
+				identity="true" type="post" />
+		</table>
+
+		<table tableName="tb_enterprise_hh_category_relationship" domainObjectName="EnterpriseHhCategoryRelationship">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT 
+				LAST_INSERT_ID()"
+				identity="true" type="post" />
+		</table> -->
+		<!-- <table tableName="tb_recommand_failed" domainObjectName="RecommandFailed">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT 
+				LAST_INSERT_ID()"
+				identity="true" type="post" />
+		</table> -->
+		<!-- <table tableName="placement" domainObjectName="Placement">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT 
+				LAST_INSERT_ID()"
+				identity="true" type="post" />
+			<columnOverride column="termination_time" property="terminationTime" />
+			<columnOverride column="termination_reason" property="terminationReason" />
+			<columnOverride column="enterprise_name" property="enterpriseName" />
+			<columnOverride column="company_name" property="companyName" />
+			<columnOverride column="employer_name" property="employerName" />
+			<columnOverride column="hunter_name" property="hunterName" />
+			<columnOverride column="candidate_name" property="candidateName" />
+			<columnOverride column="position_title" property="positionTitle" />
+			<columnOverride column="offer_progress" property="offerProgress" />
+			<columnOverride column="over_guarantee_operate_time" property="overGuaranteeOperateTime" />
+		</table> -->
+			
+		<!-- <table tableName="tb_customer_relationship" domainObjectName="CustomerRelationship">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT 
+				LAST_INSERT_ID()"
+				identity="true" type="post" />
+		</table> -->
+		<!-- <table tableName="tb_enterprise" domainObjectName="Enterprise">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT 
+				LAST_INSERT_ID()"
+				identity="true" type="post" />
+		</table> -->
+			
+		<!-- <table tableName="hd_company" domainObjectName="TalentLastCompany">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+		
+		<!-- <table tableName="interview" domainObjectName="Interview"> 
+			<property name="useActualColumnNames" value="true"/> 
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+			<columnOverride column="createUser" property="createUserId" />
+			<columnOverride column="updateUser" property="updateUserId" />
+			<columnOverride column="confirm_interview_time" property="confirmInterviewTime" />
+			<columnOverride column="request_type" property="requestType" />
+		</table> -->
+		
+		<!-- <table tableName="hd_cv" domainObjectName="Cv">
+			<property name="useActualColumnNames" value="true" />
+		</table> -->
+		
+		<!-- <table tableName="tb_talent_model" domainObjectName="TalentModel">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+		<!-- <table tableName="hd_talent_updated" domainObjectName="TalentUpdated">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+        </table> -->
+		
+		<!-- <table tableName="tb_recruit_special" domainObjectName="RecruitSpecial">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table>
+		<table tableName="tb_special_position" domainObjectName="SpecialPosition">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+		<!-- <table tableName="tb_position_conditions" domainObjectName="PositionConditions">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table> -->
+		 <!-- <table tableName="tb_unread_candidate" domainObjectName="UnreadCandidate">
+		 	<property name="useActualColumnNames" value="false"/>
+		 </table> -->
+		 <!-- <table tableName="tb_unread_talent" domainObjectName="UnreadTalent">
+		 	<property name="useActualColumnNames" value="false"/>
+		 </table> -->
+		<!-- <table tableName="tb_unread_position" domainObjectName="UnreadPosition">
+		 	<property name="useActualColumnNames" value="false"/>
+		 </table> -->
+		<!-- <table tableName="hd_tag" domainObjectName="TalentTag">
+		 	<property name="useActualColumnNames" value="true"/>
+		 </table> -->
+		 <!-- 
+		 <table tableName="hd_company" domainObjectName="TalentCompany">
+		 	<property name="useActualColumnNames" value="true"/>
+		 </table> -->
+		 
+		<!-- <table tableName="comments" domainObjectName="Comment">
+		 	<property name="useActualColumnNames" value="true"/>
+		 	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		 	<columnOverride column="candidate_id" property="candidateId" />
+		 </table> -->
+		<!-- <table tableName="Payment" domainObjectName="Payment"> 
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+		
+		<!-- <table tableName="hd_tag" domainObjectName="HdTag">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+			<columnOverride column="update_time" property="updateTime" />
+			<columnOverride column="update_user_id" property="updateUserId" />
+		</table> -->
+		
+		<!-- <table tableName="tb_tag" domainObjectName="Tag">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+		</table> -->
+
+
+		<!-- <table tableName="tb_talent_tag" domainObjectName="TalentTag">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table> -->
+		<!-- <table tableName="tb_position_tag" domainObjectName="PositionTag">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+			<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" />
+		</table> -->
+		
+		<!-- <table schema="ho_dev" tableName="paction" domainObjectName="Contract">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post" />
+			<columnOverride column="invoice_date" property="invoiceDate" />
+			<columnOverride column="sign_department" property="signDepartment" />
+			<columnOverride column="sign_user_id" property="signUserId" />
+			<columnOverride column="send_time" property="sendTime" />
+			<columnOverride column="receive_time" property="receiveTime" />
+			<columnOverride column="registration_number" property="registrationNumber" />
+			<columnOverride column="guarantee_months" property="guaranteeMonths" />
+			<columnOverride column="candidate_feedback_time" property="candidateFeedbackTime" />
+			<columnOverride column="resume_validity" property="resumeValidity" />
+			<columnOverride column="referral_calculation" property="referralCalculation" />
+			<columnOverride column="file_path" property="filePath" />
+			<columnOverride column="recommend_validity" property="recommendValidity" />
+			<columnOverride column="mode" property="mode" />
+			<columnOverride column="storage_place" property="storagePlace" />
+		</table> -->
+
+		<!-- <table tableName="hh_capability_lkp" domainObjectName="HhCapability"> 
+			<property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!--<table tableName="tb_important_position" 
+			domainObjectName="ImportantPosition"> <property name="useActualColumnNames" 
+			value="false"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="tb_user_company_application" domainObjectName="UserCompanyApplication"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride 
+			column="status" javaType="Integer" /> </table> -->
+
+		<table tableName="user" domainObjectName="User">
+			<property name="useActualColumnNames" value="true" />
+			<columnOverride column="referredBy" property="agentId" />
+			<columnOverride column="reportTo" property="managerId" />
+			<columnOverride column="userType" property="type" />
+			<columnOverride column="selfIntroduction" property="introduction" />
+			<columnOverride column="idcard_image_url" property="idAttachment" />
+			<columnOverride column="cellPhone" property="mobilePhone" />
+			<columnOverride column="phone" property="officePhone" />
+			<columnOverride column="trueName" property="trueName" />
+			<columnOverride column="userTitle" property="title" />
+			<columnOverride column="account" property="bankAccountName" />
+			<columnOverride column="accountNumber" property="bankAccountNumber" />
+			<columnOverride column="bank" property="bankName" />
+			<columnOverride column="head_image_url" property="headImageUrl" />
+			<columnOverride column="big_shot_apply_status" property="bigShotApplyStatus" />
+			<columnOverride column="total_score" property="totalScore" />
+			<columnOverride column="idcard_image_url_back" property="idBackAttachment" />
+			<columnOverride column="experienced_areas" property="experiencedAreas" />
+			<columnOverride column="experienced_annual_salary" property="experiencedAnnualSalary" />
+			<columnOverride column="experienced_industrys" property="experiencedIndustrys" />
+			<columnOverride column="begin_work_year" property="beginWorkYear" />
+		</table>
+
+		<!-- <table schema="auth_dev" tableName="auth_user" domainObjectName="AuthUser"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> </table> 
+			<table schema="auth_dev" tableName="auth_user_identity" domainObjectName="AuthUserIdentity"> 
+			<property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="tb_invite" domainObjectName="Invite"> <property 
+			name="useActualColumnNames" value="false"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride column="exchange" 
+			javaType="java.lang.Boolean" jdbcType="INTEGER" /> </table> <table tableName="tb_user_award" 
+			domainObjectName="UserAward"> <property name="useActualColumnNames" value="false"/> 
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" 
+			type="post"/> </table> -->
+
+		<!-- <table tableName="tb_coupon_enterprise" domainObjectName="CouponEnterprise"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> </table> 
+			<table tableName="tb_coupon_usage" domainObjectName="CouponUsage"> <property 
+			name="useActualColumnNames" value="false"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="tb_message" domainObjectName="Message"> <property 
+			name="useActualColumnNames" value="false"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+		<!-- <table tableName="request" domainObjectName="Request"> <property name="useActualColumnNames" 
+			value="true"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> <columnOverride column="reject_times" property="rejectTimes" 
+			/> </table>  <table tableName="positioncollection" domainObjectName="PositionCollection"> 
+			<property name="useActualColumnNames" value="true"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+		<!-- <table tableName="requestassign" domainObjectName="RequestAssign"> 
+				<property name="useActualColumnNames" value="true"/> 
+				<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+				<columnOverride column="assignHunterId" javaType="java.lang.Long" jdbcType="INTEGER" /> 
+				<columnOverride column="employerCompanyId" javaType="java.lang.Long" jdbcType="INTEGER" /> 
+			</table> -->
+		<!-- <table tableName="tb_enterprise_user" domainObjectName="EnterpriseUser"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride 
+			column="root" javaType="java.lang.Boolean" jdbcType="TINYINT" /> </table> 
+			<table tableName="tb_enterprise_investigate" domainObjectName="EnterpriseInvestigate"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="tb_group" domainObjectName="Group"> <property name="useActualColumnNames" 
+			value="false"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> </table> <table tableName="tb_group_user" domainObjectName="GroupUser"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> </table> 
+			<table tableName="tb_operation" domainObjectName="Operation"> <property name="useActualColumnNames" 
+			value="false"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> </table> <table tableName="tb_group_operation" 
+			domainObjectName="GroupOperation"> <property name="useActualColumnNames" 
+			value="false"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> </table> <table tableName="tb_user_operation" 
+			domainObjectName="UserOperation"> <property name="useActualColumnNames" value="false"/> 
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" 
+			type="post"/> </table> -->
+
+		<!-- <table tableName="online" domainObjectName="Online"> <property name="useActualColumnNames" 
+			value="true"/> </table> -->
+
+		<!-- <table tableName="contract" domainObjectName="CompanyCooperation"> 
+			<property name="useActualColumnNames" value="true"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride 
+			column="employerCompanyId" property="enterpriseId" /> <columnOverride column="headhunterCompanyId" 
+			property="companyId" /> </table> -->
+
+		<!-- <table tableName="tb_company_user" domainObjectName="CompanyUser"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride 
+			column="root" javaType="java.lang.Boolean" jdbcType="TINYINT" /> </table> -->
+
+		<!-- <table tableName="tb_hh" domainObjectName="Hh"> <property name="useActualColumnNames" 
+			value="false"/> </table> -->
+
+		<!-- <table tableName="company" domainObjectName="Company"> <property name="useActualColumnNames" 
+			value="true"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> <columnOverride column="enterpriseCode" property="licenseNumber" 
+			/> <columnOverride column="enterpriseCodeAttachment" property="licenseAttachment" 
+			/> <columnOverride column="companyType" property="type" /> <columnOverride 
+			column="logoUrl" property="logo" /> <columnOverride column="companyStyle" 
+			property="companyNature" /> <columnOverride column="phone" property="officePhone" 
+			/> <columnOverride column="salseAdmin" property="salesAdmin" /> <columnOverride 
+			column="bank" property="bankName" /> <columnOverride column="account" property="bankAccountName" 
+			/> <columnOverride column="accountNumber" property="bankAccountNumber" /> 
+			<columnOverride column="contractattachment" property="legalPersonAttachment" 
+			/> <columnOverride column="referredBy" property="agentId" /> <columnOverride 
+			column="industry1" property="industry" /> <columnOverride column="independent" 
+			property="independent" javaType="Integer" /> </table> -->
+
+		<!-- <table tableName="tb_hh" domainObjectName="Hh"> <property name="useActualColumnNames" 
+			value="false"/> <columnOverride column="soho" javaType="java.lang.Boolean" 
+			jdbcType="TINYINT" /> <columnOverride column="defunct" javaType="java.lang.Boolean" 
+			jdbcType="TINYINT" /> </table> -->
+
+		<!-- <table tableName="tb_hr" domainObjectName="Hr"> <property name="useActualColumnNames" 
+			value="false"/> <columnOverride column="defunct" javaType="java.lang.Boolean" 
+			jdbcType="TINYINT" /> </table> <table tableName="tb_subscription" domainObjectName="Subscription"> 
+			<property name="useActualColumnNames" value="false"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> </table> 
+			<table tableName="tb_profile" domainObjectName="Profile"> <property name="useActualColumnNames" 
+			value="false"/> <columnOverride column="defunct" javaType="java.lang.Boolean" 
+			jdbcType="TINYINT" /> </table> <table tableName="tb_privacy" domainObjectName="Privacy"> 
+			<property name="useActualColumnNames" value="false"/> <columnOverride column="real_name_hide" 
+			javaType="java.lang.Boolean" jdbcType="TINYINT" /> <columnOverride column="email_hide" 
+			javaType="java.lang.Boolean" jdbcType="TINYINT" /> <columnOverride column="office_phone_hide" 
+			javaType="java.lang.Boolean" jdbcType="TINYINT" /> <columnOverride column="mobile_phone_hide" 
+			javaType="java.lang.Boolean" jdbcType="TINYINT" /> </table>  -->
+			
+			<!-- <table tableName="tb_passport" domainObjectName="Passport"> 
+				<property name="useActualColumnNames" value="false"/> 
+				<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> 
+				<columnOverride column="defunct" javaType="java.lang.Boolean" jdbcType="TINYINT" /> 
+				<columnOverride column="mobile_verified" javaType="java.lang.Boolean" jdbcType="TINYINT" /> 
+				<columnOverride column="email_verified" javaType="java.lang.Boolean" jdbcType="TINYINT" /> 
+			</table> -->
+
+		<!-- <table tableName="online" domainObjectName="Online"> <property name="useActualColumnNames" 
+			value="true"/> </table> -->
+
+		<!-- <table tableName="timepointer" domainObjectName="TimePointer"> <property 
+			name="useActualColumnNames" value="true"/> <columnOverride column="subModel" 
+			javaType="java.lang.Integer" jdbcType="INTEGER" /> 
+			<columnOverride column="end_time" property="endTime"/></table> -->
+
+		<!-- <table tableName="tb_index_updated" domainObjectName="IndexUpdated"> 
+			<property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="placement" domainObjectName="Placement"> <property 
+			name="useActualColumnNames" value="true"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride column="termination_time" 
+			property="terminationTime" /> <columnOverride column="termination_reason" 
+			property="terminationReason" /> <columnOverride column="enterprise_name" 
+			property="enterpriseName" /> <columnOverride column="company_name" property="companyName" 
+			/> <columnOverride column="employer_name" property="employerName" /> <columnOverride 
+			column="hunter_name" property="hunterName" /> <columnOverride column="candidate_name" 
+			property="candidateName" /> <columnOverride column="position_title" property="positionTitle" 
+			/> </table> -->
+
+		<!-- <table tableName="contract" domainObjectName="CompanyCooperation"> 
+			<property name="useActualColumnNames" value="true"/> <generatedKey column="id" 
+			sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride 
+			column="employerCompanyId" property="enterpriseId" /> <columnOverride column="headhunterCompanyId" 
+			property="companyId" /> </table> -->
+
+		<!-- <table tableName="auth_company" domainObjectName="AuthCompany"> <property 
+			name="useActualColumnNames" value="false"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="auth_user" domainObjectName="AuthUser"> <property 
+			name="useActualColumnNames" value="false"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> <table tableName="auth_user_identity" 
+			domainObjectName="AuthUserIdentity"> <property name="useActualColumnNames" 
+			value="false"/> </table> -->
+
+		<!-- <table tableName="auth_user_permission" domainObjectName="AuthUserPermission"> 
+			<property name="useActualColumnNames" value="false"/> </table>
+ -->
+		<!-- <table tableName="auth_user_role" domainObjectName="AuthUserRole"> 
+			<property name="useActualColumnNames" value="false"/> </table> -->
+
+
+		<!-- <table tableName="position" domainObjectName="Position"> <property 
+			name="useActualColumnNames" value="true"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> <columnOverride column="isPrivate" 
+			javaType="java.lang.Boolean" jdbcType="INTEGER" /> <columnOverride column="isPublic" 
+			javaType="java.lang.Boolean" jdbcType="INTEGER" /> <columnOverride column="isContract" 
+			javaType="java.lang.Boolean" jdbcType="INTEGER" /> <columnOverride column="hr_priority" 
+			property="hrPriority" /> <columnOverride column="service_admin" property="serviceAdmin" 
+			/> <columnOverride column="investigated" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+			<columnOverride column="publish_time" property="publishTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+			<columnOverride column="position_style" property="positionStyle" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+			</table> -->
+
+		<!-- <table tableName="interview" domainObjectName="Interview"> <property 
+			name="useActualColumnNames" value="true"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="tb_audit" domainObjectName="Audit"> <property name="useActualColumnNames" 
+			value="false"/> </table> -->
+
+		<!-- <table tableName="identitybinding" domainObjectName="IdentityBinding"> 
+			<property name="useActualColumnNames" value="true"/> </table> -->
+
+		<!-- <table tableName="messagemap" domainObjectName="MessageMap"> <property 
+			name="useActualColumnNames" value="true"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="message" domainObjectName="Message"> <property name="useActualColumnNames" 
+			value="true"/> <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" 
+			identity="true" type="post"/> </table> -->
+
+		<!-- <table tableName="tb_progress" domainObjectName="Progress" > <property 
+			name="useActualColumnNames" value="false"/> <generatedKey column="id" sqlStatement="SELECT 
+			LAST_INSERT_ID()" identity="true" type="post"/> </table> -->
+			
+		<!-- <table tableName="tb_talent_draft" domainObjectName="TalentDraft">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post" />
+		</table> -->
+
+	</context>
+
+</generatorConfiguration>
