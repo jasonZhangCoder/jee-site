@@ -81,7 +81,17 @@
 	
 	<!-- 依赖项定义 -->
 	<dependencies>
-	
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>4.3.2.RELEASE</version>
+		</dependency>
 		<!-- SPRING begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -537,7 +547,7 @@
 		<!-- GENERAL UTILS end -->
 		
 		<!-- CKFinder begin -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>net.coobird</groupId>
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.2</version>
@@ -561,11 +571,11 @@
 			<groupId>com.ckfinder</groupId>
 			<artifactId>ckfinderplugin-imageresize</artifactId>
 			<version>2.3</version>
-		</dependency>
+		</dependency> -->
 		<!-- CKFinder end -->
 		
 		<!-- TEST begin -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
@@ -574,7 +584,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- TEST end -->
 		
 		<!-- User Agent -->
@@ -614,7 +624,31 @@
 				</exclusion>
 			</exclusions>
 		</dependency> -->
-		
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions</artifactId>
+			<version>3.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jta</artifactId>
+			<version>3.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jdbc</artifactId>
+			<version>3.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.experlog</groupId>
+			<artifactId>xapool</artifactId>
+			<version>1.5.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
