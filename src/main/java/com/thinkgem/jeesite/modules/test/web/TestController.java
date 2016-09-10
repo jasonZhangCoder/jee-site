@@ -16,12 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.security.baotai.dao.mapper.VehicleInformationMapper;
-import com.security.baotai.model.VehicleInformation;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.modules.sys.entity.Area;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import com.thinkgem.jeesite.modules.test.entity.Test;
@@ -39,16 +36,6 @@ public class TestController extends BaseController {
 
     @Autowired
     private TestService testService;
-
-    @Autowired
-    private VehicleInformationMapper vehicleInformationMapper;
-
-    @RequestMapping("test")
-    @ResponseBody
-    public String list(Area area, Model model) {
-        VehicleInformation info = vehicleInformationMapper.selectByPrimaryKey("121");
-        return "modules/sys/areaList";
-    }
 
     @ModelAttribute
     public Test get(@RequestParam(required = false) String id) {
