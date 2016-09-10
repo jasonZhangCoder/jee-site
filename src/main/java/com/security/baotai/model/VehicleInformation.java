@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class VehicleInformation implements Serializable {
-    private String id;
+    private Long id;
 
     private String licenseNum;
 
@@ -38,7 +38,7 @@ public class VehicleInformation implements Serializable {
      *
      * @mbggenerated
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -50,8 +50,8 @@ public class VehicleInformation implements Serializable {
      *
      * @mbggenerated
      */
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.security.baotai.dao;
+package com.security.baotai.core.dao;
 
 public class Limit {
 
