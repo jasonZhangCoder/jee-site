@@ -42,7 +42,7 @@ public class VehicleController extends BaseController {
     public String list(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam(value = "licenseNum", required = false) String licenseNum, @RequestParam(value = "department", required = false) String department,
             @RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize) {
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
 
         VehicleInformationSearch search = new VehicleInformationSearch();
         search.setStart((pageNo - 1) * pageSize);
