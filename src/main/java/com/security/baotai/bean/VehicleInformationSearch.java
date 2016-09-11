@@ -5,6 +5,10 @@ public class VehicleInformationSearch {
 
     private Integer maxRows;
 
+    private String licenseNum;
+
+    private String department;
+
     public Integer getStart() {
         return start;
     }
@@ -19,6 +23,22 @@ public class VehicleInformationSearch {
 
     public void setMaxRows(Integer maxRows) {
         this.maxRows = maxRows;
+    }
+
+    public String getLicenseNum() {
+        return licenseNum;
+    }
+
+    public void setLicenseNum(String licenseNum) {
+        this.licenseNum = licenseNum;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
 }

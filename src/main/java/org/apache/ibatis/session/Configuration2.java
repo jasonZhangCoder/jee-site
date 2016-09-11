@@ -1,3 +1,4 @@
+package org.apache.ibatis.session;
 /// *
 // * Copyright 2009-2014 the original author or authors.
 // *

@@ -11,6 +11,7 @@ import com.security.baotai.mapper.VehicleInformationMapper;
 import com.security.baotai.model.VehicleInformation;
 import com.security.baotai.model.VehicleInformationExample;
 import com.security.baotai.service.IVehicleInformationService;
+import com.thinkgem.jeesite.common.utils.StringUtils;
 
 @Service
 public class VehicleInformationService implements IVehicleInformationService {
@@ -41,10 +42,29 @@ public class VehicleInformationService implements IVehicleInformationService {
     @Override
     public List<VehicleInformation> getVehicleInformations(VehicleInformationSearch search) {
         VehicleInformationExample example = new VehicleInformationExample();
-
+        VehicleInformationExample.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(search.getLicenseNum())) {
+            criteria.andLicenseNumLike("%" + search.getLicenseNum().trim() + "%");
+        }
+        if (StringUtils.isNotEmpty(search.getDepartment())) {
+            criteria.andDepartmentEqualTo(search.getDepartment());
+        }
         example.setLimit(new Limit(search.getStart(), search.getMaxRows()));
         example.setOrderByClause(" create_time desc");
         return vehicleInformationMapper.selectByExample(example);
+    }
+
+    @Override
+    public int countVehicleInformations(VehicleInformationSearch search) {
+        VehicleInformationExample example = new VehicleInformationExample();
+        VehicleInformationExample.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(search.getLicenseNum())) {
+            criteria.andLicenseNumLike("%" + search.getLicenseNum().trim() + "%");
+        }
+        if (StringUtils.isNotEmpty(search.getDepartment())) {
+            criteria.andDepartmentEqualTo(search.getDepartment());
+        }
+        return vehicleInformationMapper.countByExample(example);
     }
 
 }

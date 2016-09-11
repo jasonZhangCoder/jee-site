@@ -36,6 +36,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:mybatis/sqlmap/vehicle/*.xml</value>
+				<value>classpath:mybatis/sqlmap/department/*.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -48,7 +49,9 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="newSqlSessionFactory" />
 		<property name="basePackage"
-		    value="com.security.baotai.dao.mapper">
+		    value="com.security.baotai.mapper
+		    com.security.baotai.mapper.department
+		    ">
 		</property>
 	</bean>
 	

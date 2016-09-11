@@ -1,3 +1,4 @@
+package org.apache.ibatis.builder.xml;
 /// *
 // * Copyright 2009-2013 the original author or authors.
 // *

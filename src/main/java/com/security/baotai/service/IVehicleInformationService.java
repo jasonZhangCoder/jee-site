@@ -16,4 +16,6 @@ public interface IVehicleInformationService {
     void deleteVehicleInformation(long id);
 
     List<VehicleInformation> getVehicleInformations(VehicleInformationSearch search);
+
+    int countVehicleInformations(VehicleInformationSearch search);
 }
