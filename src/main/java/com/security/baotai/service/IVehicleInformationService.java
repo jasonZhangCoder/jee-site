@@ -3,7 +3,7 @@ package com.security.baotai.service;
 import java.util.List;
 
 import com.security.baotai.bean.VehicleInformationSearch;
-import com.security.baotai.model.VehicleInformation;
+import com.security.baotai.model.vehicle.VehicleInformation;
 
 public interface IVehicleInformationService {
 

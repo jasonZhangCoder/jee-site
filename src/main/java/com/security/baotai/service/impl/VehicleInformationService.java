@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.security.baotai.bean.VehicleInformationSearch;
 import com.security.baotai.core.dao.Limit;
-import com.security.baotai.mapper.VehicleInformationMapper;
-import com.security.baotai.model.VehicleInformation;
-import com.security.baotai.model.VehicleInformationExample;
+import com.security.baotai.mapper.vehicle.VehicleInformationMapper;
+import com.security.baotai.model.vehicle.VehicleInformation;
+import com.security.baotai.model.vehicle.VehicleInformationExample;
 import com.security.baotai.service.IVehicleInformationService;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 

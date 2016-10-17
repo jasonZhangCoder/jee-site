@@ -1,4 +1,4 @@
-package com.security.baotai.model;
+package com.security.baotai.model.vehicle;
 
 import java.io.Serializable;
 import java.util.Date;

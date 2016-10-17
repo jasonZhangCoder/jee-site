@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.security.baotai.bean.VehicleInformationSearch;
 import com.security.baotai.core.util.Page;
-import com.security.baotai.model.VehicleInformation;
 import com.security.baotai.model.department.Department;
+import com.security.baotai.model.vehicle.VehicleInformation;
 import com.security.baotai.service.IVehicleInformationService;
 import com.security.baotai.service.department.IDepartmentService;
 import com.thinkgem.jeesite.common.web.BaseController;

@@ -1,7 +1,7 @@
-package com.security.baotai.mapper;
+package com.security.baotai.mapper.vehicle;
 
-import com.security.baotai.model.VehicleRecord;
-import com.security.baotai.model.VehicleRecordExample;
+import com.security.baotai.model.vehicle.VehicleRecord;
+import com.security.baotai.model.vehicle.VehicleRecordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
