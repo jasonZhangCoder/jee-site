@@ -1,4 +1,4 @@
-package com.security.baotai.model;
+package com.security.baotai.model.personnel;
 
 import com.security.baotai.core.dao.Limit;
 import java.util.ArrayList;

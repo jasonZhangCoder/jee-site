@@ -1,7 +1,7 @@
-package com.security.baotai.mapper;
+package com.security.baotai.mapper.personnel;
 
-import com.security.baotai.model.Staff;
-import com.security.baotai.model.StaffExample;
+import com.security.baotai.model.personnel.Staff;
+import com.security.baotai.model.personnel.StaffExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
