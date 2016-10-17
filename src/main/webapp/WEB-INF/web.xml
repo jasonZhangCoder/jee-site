@@ -102,7 +102,7 @@
 	</filter-mapping>
 
 	<!-- DruidStatView -->
-	<servlet>
+<!-- 	<servlet>
 		<servlet-name>DruidStatView</servlet-name>
 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
 		<init-param>
@@ -113,7 +113,7 @@
 	<servlet-mapping>
 		<servlet-name>DruidStatView</servlet-name>
 		<url-pattern>/druid/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	
 	<!-- CKFinder -->
 	<!-- <servlet>
@@ -155,24 +155,24 @@
 	</filter-mapping> -->
 
 	<!-- Userfiles download -->
-	<servlet>
+<!-- 	<servlet>
 	  	<servlet-name>UserfilesDownloadServlet</servlet-name>
 	  	<servlet-class>com.thinkgem.jeesite.common.servlet.UserfilesDownloadServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	  	<servlet-name>UserfilesDownloadServlet</servlet-name>
 	  	<url-pattern>/userfiles/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	
 	<!-- Validate code -->
-	<servlet>
+<!-- 	<servlet>
 		<servlet-name>ValidateCodeServlet</servlet-name>
 		<servlet-class>com.thinkgem.jeesite.common.servlet.ValidateCodeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ValidateCodeServlet</servlet-name>
 		<url-pattern>/servlet/validateCodeServlet</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	
 	<!-- FineReport 
 	<servlet>

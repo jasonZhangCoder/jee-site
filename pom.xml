@@ -63,7 +63,7 @@
 		<repository>
 			<id>jeesite-repos</id>
 			<name>Jeesite Repository</name>
-			<url>http://maven.jeesite.com/nexus/content/groups/public</url>
+			<url>http://115.159.155.112:8081/nexus/content/groups/public</url>
 		</repository>
 		
 	</repositories>
@@ -74,7 +74,7 @@
 		<pluginRepository>
 			<id>jeesite-repos</id>
 			<name>Jeesite Repository</name>
-			<url>http://maven.jeesite.com/nexus/content/groups/public</url>
+			<url>http://115.159.155.112:8081/nexus/content/groups/public</url>
 		</pluginRepository>
 		
 	</pluginRepositories> 
@@ -547,7 +547,7 @@
 		<!-- GENERAL UTILS end -->
 		
 		<!-- CKFinder begin -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>net.coobird</groupId>
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.2</version>
@@ -571,8 +571,7 @@
 			<groupId>com.ckfinder</groupId>
 			<artifactId>ckfinderplugin-imageresize</artifactId>
 			<version>2.3</version>
-		</dependency> -->
-		<!-- CKFinder end -->
+		</dependency> 
 		
 		<!-- TEST begin -->
 		<!-- <dependency>
