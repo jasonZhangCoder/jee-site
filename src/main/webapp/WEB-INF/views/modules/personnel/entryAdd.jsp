@@ -43,6 +43,10 @@
 			}
 			return true;
 		}
+		
+		function queryRoles(){
+			alert();
+		}
 	</script>
 </head>
 <body>
@@ -64,6 +68,14 @@
                 <sys:treeselect id="department" name="department" value="" labelName="officeName" labelValue=""
 					title="部门" url="/sys/office/treeData?type=2" cssClass="required" notAllowSelectParent="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label">角色:</label>
+			<div class="controls">
+                <select id="role" name="role" onclick="queryRoles();">
+                	<option value="">--选择--</option>
+                </select>
 			</div>
 		</div>
 		<div class="control-group">

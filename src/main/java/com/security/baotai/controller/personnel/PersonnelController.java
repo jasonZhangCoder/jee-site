@@ -25,6 +25,7 @@ import com.security.baotai.core.util.Page;
 import com.security.baotai.model.personnel.Staff;
 import com.security.baotai.service.department.IDepartmentService;
 import com.security.baotai.service.personnel.IPersonnelService;
+import com.security.baotai.service.role.IRoleService;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
@@ -36,6 +37,8 @@ public class PersonnelController extends BaseController {
     private IPersonnelService personnelService;
     @Autowired
     private IDepartmentService departmentService;
+    @Autowired
+    private IRoleService roleService;
 
     private static final String imgPath = "/upload/";
 
