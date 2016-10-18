@@ -1,4 +1,4 @@
-package com.security.baotai.service.impl;
+package com.security.baotai.service.vehicle.impl;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.security.baotai.core.dao.Limit;
 import com.security.baotai.mapper.vehicle.VehicleInformationMapper;
 import com.security.baotai.model.vehicle.VehicleInformation;
 import com.security.baotai.model.vehicle.VehicleInformationExample;
-import com.security.baotai.service.IVehicleInformationService;
+import com.security.baotai.service.vehicle.IVehicleInformationService;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 
 @Service

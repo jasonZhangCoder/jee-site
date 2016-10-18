@@ -19,8 +19,8 @@ import com.security.baotai.bean.VehicleInformationSearch;
 import com.security.baotai.core.util.Page;
 import com.security.baotai.model.department.Department;
 import com.security.baotai.model.vehicle.VehicleInformation;
-import com.security.baotai.service.IVehicleInformationService;
 import com.security.baotai.service.department.IDepartmentService;
+import com.security.baotai.service.vehicle.IVehicleInformationService;
 import com.thinkgem.jeesite.common.web.BaseController;
 
 @Controller

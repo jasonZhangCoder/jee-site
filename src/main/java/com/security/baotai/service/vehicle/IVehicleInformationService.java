@@ -1,4 +1,4 @@
-package com.security.baotai.service;
+package com.security.baotai.service.vehicle;
 
 import java.util.List;
 
