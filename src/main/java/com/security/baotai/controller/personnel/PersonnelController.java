@@ -1,5 +1,7 @@
 package com.security.baotai.controller.personnel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,7 @@ import com.security.baotai.model.personnel.Staff;
 import com.security.baotai.service.department.IDepartmentService;
 import com.security.baotai.service.personnel.IPersonnelService;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 @Controller
 @RequestMapping(value = "${adminPath}/personnel")
@@ -32,6 +36,8 @@ public class PersonnelController extends BaseController {
     private IPersonnelService personnelService;
     @Autowired
     private IDepartmentService departmentService;
+
+    private static final String imgPath = "/upload/";
 
     @RequestMapping(value = "/entry", method = RequestMethod.GET)
     public String entry(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -74,6 +80,12 @@ public class PersonnelController extends BaseController {
         return "modules/personnel/entryAdd";
     }
 
+    @RequestMapping(value = "/entryDetail", method = RequestMethod.GET)
+    public String entryDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value = "id", required = true) String id) {
+
+        return "modules/personnel/entryDetail";
+    }
+
     @RequestMapping(value = "/entrySave", method = RequestMethod.POST)
     public String entrySave(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam(value = "name", required = true) String name, @RequestParam(value = "department", required = true) String department,
@@ -82,13 +94,41 @@ public class PersonnelController extends BaseController {
             @RequestParam(value = "photo", required = true) CommonsMultipartFile photo,
             @RequestParam(value = "idPhotoAbove", required = true) CommonsMultipartFile idPhotoAbove,
             @RequestParam(value = "idPhotoBack", required = true) CommonsMultipartFile idPhotoBack,
-            @RequestParam(value = "politicalExamination", required = true) CommonsMultipartFile politicalExamination) {
+            @RequestParam(value = "politicalExamination", required = true) CommonsMultipartFile politicalExamination) throws Exception {
         
-        System.out.println(photo.getContentType() + "--" + photo.getOriginalFilename() + "--" + photo.getSize());
-        System.out.println(idPhotoAbove.getContentType() + "--" + idPhotoAbove.getOriginalFilename() + "--" + idPhotoAbove.getSize());
-        System.out.println(idPhotoBack.getContentType() + "--" + idPhotoBack.getOriginalFilename() + "--" + idPhotoBack.getSize());
-        System.out.println(politicalExamination.getContentType() + "--" + politicalExamination.getOriginalFilename() + "--" + politicalExamination.getSize());
+        String userId = UserUtils.getUser().getId();
+        
+        Staff staff = new Staff();
+        staff.setName(name);
+        staff.setDepartment(department);
+        staff.setPhone(phone);
+        staff.setIdNum(idNum);
+        staff.setIsSoldier(Byte.valueOf(isSoldier));
+        staff.setEntryDate(entryDate);
+        
+        if(photo != null){
+            staff.setPhoto(uploadImg(request, photo));
+        }
+        if (idPhotoAbove != null) {
+            staff.setIdPhotoAbove(uploadImg(request, idPhotoAbove));
+        }
+        if (idPhotoBack != null) {
+            staff.setIdPhotoBack(uploadImg(request, idPhotoBack));
+        }
+        if (politicalExamination != null) {
+            staff.setPoliticalExamination(uploadImg(request, politicalExamination));
+        }
+        personnelService.addStaff(staff, userId);
         model.addAttribute("message", "操作成功");
         return entry(request, response, model);
+    }
+
+    private String uploadImg(HttpServletRequest request, CommonsMultipartFile file) throws IOException {
+
+        @SuppressWarnings("deprecation")
+        String basePath = request.getRealPath("/") + imgPath;
+        File photoFile = new File(basePath + file.getOriginalFilename());
+        FileUtils.writeByteArrayToFile(photoFile, file.getBytes());
+        return imgPath + file.getOriginalFilename();
     }
 }

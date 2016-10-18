@@ -1,5 +1,6 @@
 package com.security.baotai.service.personnel.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +48,11 @@ public class PersonnelService implements IPersonnelService {
     }
 
     @Override
-    public void addStaff(Staff staff) {
-
+    public void addStaff(Staff staff, String operator) {
+        staff.setCreateTime(new Date());
+        staff.setCreateUserId(operator);
+        staff.setUpdateTime(new Date());
+        staff.setUpdateUserId(operator);
         staffMapper.insertSelective(staff);
     }
 

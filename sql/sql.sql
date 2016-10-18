@@ -24,10 +24,10 @@ CREATE TABLE `tb_vehicle_record` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_staff` (
-  `id` varchar(50) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(0) NOT NULL,
   `phone` varchar(0) DEFAULT NULL,
-  `is_soldier` tinyint(4) NOT NULL COMMENT '是否当过兵',
+  `is_soldier` tinyint(2) NOT NULL COMMENT '是否当过兵  0:是,1:否',
   `id_num` varchar(0) NOT NULL,
   `id_photo_above` varchar(255) DEFAULT NULL COMMENT '身份证照片正面',
   `id_photo_back` varchar(255) DEFAULT NULL COMMENT '身份证照片反面',

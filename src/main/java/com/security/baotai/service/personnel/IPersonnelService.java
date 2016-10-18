@@ -11,5 +11,5 @@ public interface IPersonnelService {
 
     int countStaff(StaffSearch search);
 
-    void addStaff(Staff staff);
+    void addStaff(Staff staff, String operator);
 }
