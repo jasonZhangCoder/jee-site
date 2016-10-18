@@ -38,7 +38,7 @@
 					${entry.status }
 				</td>
 				<td>
-					<a href="${ctx}/vehicle/update?id=${vehicle.id }">修改</a> &nbsp;&nbsp;<a href="${ctx}/vehicle/delete?id=${vehicle.id }" onclick="return confirmx('确认要删除吗？', this.href)">删除</a>
+					<a href="${ctx}/personnel/entryDetail?id=${entry.id }">查看</a> &nbsp;&nbsp;<a href="${ctx}/personnel/entryDetail?id=${entry.id }" onclick="return confirmx('确认要删除吗？', this.href)">删除</a>
 				</td>
 			</tr>
 		</c:forEach>

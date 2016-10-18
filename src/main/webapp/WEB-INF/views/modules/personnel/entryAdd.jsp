@@ -119,7 +119,7 @@
 			<label class="control-label">入职时间：</label>
 			<div class="controls">
 				<input id="entryDate" name="entryDate" type="text" readonly="readonly" maxlength="20" class="Wdate required"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
