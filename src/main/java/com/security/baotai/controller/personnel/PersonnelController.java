@@ -103,7 +103,7 @@ public class PersonnelController extends BaseController {
         staff.setDepartment(department);
         staff.setPhone(phone);
         staff.setIdNum(idNum);
-        staff.setIsSoldier(Byte.valueOf(isSoldier));
+        staff.setIsSoldier("0".equals(isSoldier.trim()) ? true : false);
         staff.setEntryDate(entryDate);
         
         if(photo != null){

@@ -37,7 +37,7 @@
 		<div class="control-group">
 			<label class="control-label">是否当过兵：</label>
 			<div class="controls">
-				<input name="isSoldier" type="radio" value="0"  ${idNum==0?"checked":"" }/>是 <input name="isSoldier" type="radio" value="1" ${idNum==1?"checked":"" }/>否
+				<input name="isSoldier" type="radio" value="0"  ${isSoldier?"checked":"" }/>是 <input name="isSoldier" type="radio" value="1" ${!isSoldier?"checked":"" }/>否
 			</div>
 		</div>
 		<div class="control-group">

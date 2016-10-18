@@ -239,62 +239,52 @@ public class StaffExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(String value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(String value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(String value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(String value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(String value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(String value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLike(String value) {
-            addCriterion("id like", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotLike(String value) {
-            addCriterion("id not like", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<String> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<String> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(String value1, String value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(String value1, String value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -449,52 +439,52 @@ public class StaffExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierEqualTo(Byte value) {
+        public Criteria andIsSoldierEqualTo(Boolean value) {
             addCriterion("is_soldier =", value, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierNotEqualTo(Byte value) {
+        public Criteria andIsSoldierNotEqualTo(Boolean value) {
             addCriterion("is_soldier <>", value, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierGreaterThan(Byte value) {
+        public Criteria andIsSoldierGreaterThan(Boolean value) {
             addCriterion("is_soldier >", value, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierGreaterThanOrEqualTo(Byte value) {
+        public Criteria andIsSoldierGreaterThanOrEqualTo(Boolean value) {
             addCriterion("is_soldier >=", value, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierLessThan(Byte value) {
+        public Criteria andIsSoldierLessThan(Boolean value) {
             addCriterion("is_soldier <", value, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierLessThanOrEqualTo(Byte value) {
+        public Criteria andIsSoldierLessThanOrEqualTo(Boolean value) {
             addCriterion("is_soldier <=", value, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierIn(List<Byte> values) {
+        public Criteria andIsSoldierIn(List<Boolean> values) {
             addCriterion("is_soldier in", values, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierNotIn(List<Byte> values) {
+        public Criteria andIsSoldierNotIn(List<Boolean> values) {
             addCriterion("is_soldier not in", values, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierBetween(Byte value1, Byte value2) {
+        public Criteria andIsSoldierBetween(Boolean value1, Boolean value2) {
             addCriterion("is_soldier between", value1, value2, "isSoldier");
             return (Criteria) this;
         }
 
-        public Criteria andIsSoldierNotBetween(Byte value1, Byte value2) {
+        public Criteria andIsSoldierNotBetween(Boolean value1, Boolean value2) {
             addCriterion("is_soldier not between", value1, value2, "isSoldier");
             return (Criteria) this;
         }

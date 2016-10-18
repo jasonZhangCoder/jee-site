@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Staff implements Serializable {
-    private String id;
+    private Long id;
 
     private String name;
 
     private String phone;
 
-    private Byte isSoldier;
+    private Boolean isSoldier;
 
     private String idNum;
 
@@ -62,7 +62,7 @@ public class Staff implements Serializable {
      *
      * @mbggenerated
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -74,8 +74,8 @@ public class Staff implements Serializable {
      *
      * @mbggenerated
      */
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Staff implements Serializable {
      *
      * @mbggenerated
      */
-    public Byte getIsSoldier() {
+    public Boolean getIsSoldier() {
         return isSoldier;
     }
 
@@ -146,7 +146,7 @@ public class Staff implements Serializable {
      *
      * @mbggenerated
      */
-    public void setIsSoldier(Byte isSoldier) {
+    public void setIsSoldier(Boolean isSoldier) {
         this.isSoldier = isSoldier;
     }
 
