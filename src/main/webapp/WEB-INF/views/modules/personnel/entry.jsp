@@ -40,24 +40,25 @@
 			<sys:treeselect id="department" name="department" labelName="departmentName"  value="${user.office.id}" labelValue="" 
 				title="部门" url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
 			</li> --%>
-			<div class="control-group">
-			<label class="control-label">开始时间：</label>
-			<div class="controls">
-				<input id="startTime" name="startTime" type="text" readonly="readonly" maxlength="20" class="Wdate required"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-			</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label">结束时间：</label>
-				<div class="controls">
-					<input id="endTime" name="endTime" type="text" readonly="readonly" maxlength="20" class="Wdate required"
-						onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				</div>
-			</div>
+			
+			
+			<ul class="ul-form">
+				<li><label class="control-label">开始时间：</label>
+						<input id="startTime" name="startTime" type="text" readonly="readonly" maxlength="20" class="Wdate required"
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				</li>
+				
+				<li>
+					<label class="control-label">结束时间：</label>
+						<input id="endTime" name="endTime" type="text" readonly="readonly" maxlength="20" class="Wdate required"
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				</li>
+				
+				<li class="btns"><input class="btn btn-primary" type="button" value="查询" onclick="search();"/></li>
+				<li class="clearfix"></li>
+			</ul>
 		
-		
-			<li class="btns"><input class="btn btn-primary" type="button" value="查询" onclick="search();"/></li>
-			<li class="clearfix"></li>
+			
 		</ul>
 	</form>	
 	<div id="listDiv">

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.security.baotai.bean.StaffSearch;
 import com.security.baotai.core.util.Page;
@@ -74,8 +75,20 @@ public class PersonnelController extends BaseController {
     }
 
     @RequestMapping(value = "/entrySave", method = RequestMethod.POST)
-    public String entrySave(HttpServletRequest request, HttpServletResponse response, Model model) {
-
-        return "modules/personnel/entryAdd";
+    public String entrySave(HttpServletRequest request, HttpServletResponse response, Model model,
+            @RequestParam(value = "name", required = true) String name, @RequestParam(value = "department", required = true) String department,
+            @RequestParam(value = "phone", required = true) String phone, @RequestParam(value = "idNum", required = true) String idNum,
+            @RequestParam(value = "isSoldier", required = true) String isSoldier, @RequestParam(value = "entryDate", required = true) Date entryDate,
+            @RequestParam(value = "photo", required = true) CommonsMultipartFile photo,
+            @RequestParam(value = "idPhotoAbove", required = true) CommonsMultipartFile idPhotoAbove,
+            @RequestParam(value = "idPhotoBack", required = true) CommonsMultipartFile idPhotoBack,
+            @RequestParam(value = "politicalExamination", required = true) CommonsMultipartFile politicalExamination) {
+        
+        System.out.println(photo.getContentType() + "--" + photo.getOriginalFilename() + "--" + photo.getSize());
+        System.out.println(idPhotoAbove.getContentType() + "--" + idPhotoAbove.getOriginalFilename() + "--" + idPhotoAbove.getSize());
+        System.out.println(idPhotoBack.getContentType() + "--" + idPhotoBack.getOriginalFilename() + "--" + idPhotoBack.getSize());
+        System.out.println(politicalExamination.getContentType() + "--" + politicalExamination.getOriginalFilename() + "--" + politicalExamination.getSize());
+        model.addAttribute("message", "操作成功");
+        return entry(request, response, model);
     }
 }

@@ -7,7 +7,9 @@
 			<tr>
 				<th>姓名</th>
 				<th>部门</th>
+				<th>角色</th>
 				<th>身份证号</th>
+				<th>手机号</th>
 				<th>入职日期</th>
 				<th>状态</th>
 				<th>操作</th>
@@ -21,7 +23,13 @@
 					${departmentNameMap[entry.department] }
 				</td>
 				<td>
+					${entry.role }
+				</td>
+				<td>
 					${entry.idNum }
+				</td>
+				<td>
+					${entry.phone }
 				</td>
 				<td>
 					${entry.entryDate }
