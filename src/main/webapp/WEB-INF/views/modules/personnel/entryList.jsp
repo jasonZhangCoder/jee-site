@@ -11,6 +11,7 @@
 				<th>身份证号</th>
 				<th>手机号</th>
 				<th>入职日期</th>
+				<th>出生日期</th>
 				<th>状态</th>
 				<th>操作</th>
 			</tr>
@@ -23,7 +24,7 @@
 					${departmentNameMap[entry.department] }
 				</td>
 				<td>
-					${entry.role }
+					${roleNameMap[entry.role] }
 				</td>
 				<td>
 					${entry.idNum }
@@ -32,10 +33,13 @@
 					${entry.phone }
 				</td>
 				<td>
-					${entry.entryDate }
+					<fmt:formatDate value="${entry.entryDate }" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
-					${entry.status }
+					<fmt:formatDate value="${entry.birthday }" pattern="yyyy-MM-dd"/>
+				</td>
+				<td>
+					${statusMap[entry.status] }
 				</td>
 				<td>
 					<a href="${ctx}/personnel/entryDetail?id=${entry.id }">查看</a> &nbsp;&nbsp;<a href="${ctx}/personnel/entryDetail?id=${entry.id }" onclick="return confirmx('确认要删除吗？', this.href)">删除</a>

@@ -15,8 +15,10 @@
 	}
 	
 	function search(){
-		
-		$("#listDiv").load("<%=request.getContextPath() %>/a/personnel/entryList?licenseNum="+licenseNum+"&department="+department);
+		var entryDateStart = $("#startTime").val();
+		var entryDateEnd = $("#endTime").val();
+		var name = $("#name").val();
+		$("#listDiv").load("<%=request.getContextPath() %>/a/personnel/entryList?entryDateStart="+entryDateStart+"&entryDateEnd="+entryDateEnd+"&name="+name);
 	}
 	
 	function page(n,s){
@@ -45,13 +47,18 @@
 			<ul class="ul-form">
 				<li><label class="control-label">开始时间：</label>
 						<input id="startTime" name="startTime" type="text" readonly="readonly" maxlength="20" class="Wdate required"
-							onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 				</li>
 				
 				<li>
 					<label class="control-label">结束时间：</label>
 						<input id="endTime" name="endTime" type="text" readonly="readonly" maxlength="20" class="Wdate required"
-							onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+				</li>
+				
+				<li>
+					<label class="control-label">名字：</label>
+						<input id="name" name="name" type="text" />
 				</li>
 				
 				<li class="btns"><input class="btn btn-primary" type="button" value="查询" onclick="search();"/></li>

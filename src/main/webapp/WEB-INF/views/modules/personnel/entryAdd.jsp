@@ -9,27 +9,32 @@
 			var name = $("#name").val();
 			if(name==null || name==''){
 				alert("姓名不能为空!");
-				return false
+				return false;
 			}
 			var department = $("#departmentId").val();
 			if(department==null || department==''){
 				alert("部门不能为空!");
-				return false
+				return false;
+			}
+			var role = $("#role").val();
+			if(role==null || role==''){
+				alert("角色不能为空!");
+				return false;
 			}
 			var phone = $("#phone").val();
 			if(phone==null || phone==''){
 				alert("手机不能为空!");
-				return false
+				return false;
 			}
 			var idNum = $("#idNum").val();
 			if(idNum==null || idNum==''){
 				alert("身份证号不能为空!");
-				return false
+				return false;
 			}
 			var photo = $("#photo").val();
 			if(photo==null || photo==''){
 				alert("请上传照片!");
-				return false
+				return false;
 			}
 			var idPhotoAbove = $("#idPhotoAbove").val();
 			
@@ -39,14 +44,33 @@
 			var entryDate = $("#entryDate").val();
 			if(entryDate==null || entryDate==''){
 				alert("入职日期不能为空!");
-				return false
+				return false;
+			}
+			var birthday = $("#birthday").val();
+			if(birthday==null || birthday==''){
+				alert("出生日期不能为空!");
+				return false;
 			}
 			return true;
 		}
 		
 		function queryRoles(){
-			alert();
+			/* var department = $("#departmentId").val(); */
+			$.ajax({
+				type: "get",
+				/* data:{"department":department}, */
+			  	url: "<%=request.getContextPath() %>/a/common/roles",
+				success: function(data) {
+					var jsonObj = eval(data);
+					for (var i=0;i<jsonObj.length;i++) {  
+                        var optionstring = "";  
+                        optionstring += "<option value=\"" + jsonObj[i].id + "\" >" + jsonObj[i].name + "</option>";   
+                        $("#role").append(optionstring);  
+                    }
+				}
+			});
 		}
+		
 	</script>
 </head>
 <body>
@@ -63,19 +87,23 @@
 			</div>
 		</div>
 		<div class="control-group">
-		<label class="control-label">归属部门:</label>
+		<label class="control-label">归属部门：</label>
 			<div class="controls">
                 <sys:treeselect id="department" name="department" value="" labelName="officeName" labelValue=""
-					title="部门" url="/sys/office/treeData?type=2" cssClass="required" notAllowSelectParent="true"/>
+					title="部门" url="/sys/office/treeData?type=2" cssClass="required" notAllowSelectParent="true" selectScopeModule="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-		<label class="control-label">角色:</label>
+		<label class="control-label">角色：</label>
 			<div class="controls">
-                <select id="role" name="role" onclick="queryRoles();">
-                	<option value="">--选择--</option>
+                <select id="role" name="role" class="input-large required">
+                	<option>--请选择--</option>
+                	<c:forEach items="${roleList }" var="role">
+                		<option value="${role.id }">${role.name }</option>
+                	</c:forEach>
                 </select>
+                <span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -95,7 +123,7 @@
 		<div class="control-group">
 			<label class="control-label">是否当过兵：</label>
 			<div class="controls">
-				<input name="isSoldier" type="radio" value="0"/>是 <input name="isSoldier" type="radio" value="1" checked="checked"/>否
+				<input name="isSoldier" type="radio" value="1"/>是 <input name="isSoldier" type="radio" value="0" checked="checked"/>否
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -135,7 +163,14 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		
+		<div class="control-group">
+			<label class="control-label">出生日期：</label>
+			<div class="controls">
+				<input id="birthday" name="birthday" type="text" readonly="readonly" maxlength="20" class="Wdate required"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
 		
 		<div class="form-actions">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;

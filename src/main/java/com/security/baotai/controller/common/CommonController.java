@@ -23,9 +23,9 @@ public class CommonController extends BaseController {
     @Autowired
     private IRoleService roleService;
 
-    @RequestMapping(value = "/entry", method = RequestMethod.GET)
+    @RequestMapping(value = "/roles", method = RequestMethod.GET)
     @ResponseBody
-    public List<Role> entry(HttpServletRequest request, HttpServletResponse response, Model model,
+    public List<Role> roles(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam(value = "department", required = false) String department) {
         List<Role> roleList = roleService.getRoles(department);
         return roleList;

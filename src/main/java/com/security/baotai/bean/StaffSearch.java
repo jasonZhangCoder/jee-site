@@ -5,6 +5,8 @@ import java.util.Date;
 public class StaffSearch {
     private Integer start;
 
+    private String name;
+
     private Integer maxRows;
 
     private Date entryDateStart;
@@ -41,6 +43,14 @@ public class StaffSearch {
 
     public void setEntryDateEnd(Date entryDateEnd) {
         this.entryDateEnd = entryDateEnd;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

@@ -65,6 +65,9 @@
 						}//</c:if>
 						ids.push(nodes[i].id);
 						names.push(nodes[i].name);//<c:if test="${!checked}">
+						/* <c:if test="${selectScopeModule}">
+							queryRoles();
+						</c:if> */
 						break; // 如果为非复选框选择，则返回第一个选择  </c:if>
 					}
 					$("#${id}Id").val(ids.join(",").replace(/u_/ig,""));

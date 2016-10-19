@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.security.baotai.bean.StaffSearch;
+import com.security.baotai.bean.StaffStatus;
 import com.security.baotai.core.util.Page;
+import com.security.baotai.model.department.Department;
 import com.security.baotai.model.personnel.Staff;
+import com.security.baotai.model.role.Role;
 import com.security.baotai.service.department.IDepartmentService;
 import com.security.baotai.service.personnel.IPersonnelService;
 import com.security.baotai.service.role.IRoleService;
@@ -52,6 +55,7 @@ public class PersonnelController extends BaseController {
     public String entryList(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam(value = "entryDateStart", required = false) Date entryDateStart,
             @RequestParam(value = "entryDateEnd", required = false) Date entryDateEnd,
+            @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
 
@@ -60,6 +64,7 @@ public class PersonnelController extends BaseController {
         search.setMaxRows(pageSize);
         search.setEntryDateStart(entryDateStart);
         search.setEntryDateEnd(entryDateEnd);
+        search.setName(name);
         int count = personnelService.countStaff(search);
         Page page = new Page(pageNo, pageSize, count);
         List<Staff> staffList = personnelService.getStaffList(search);
@@ -70,8 +75,12 @@ public class PersonnelController extends BaseController {
             }
         }
         Map<String, String> departmentNameMap = departmentService.getDepartmentNameMap(ids);
+        Map<String, String> roleNameMap = roleService.getAllRoleName(null);
+        Map<Integer, String> statusMap = StaffStatus.getStatusMap();
         model.addAttribute("staffList", staffList);
         model.addAttribute("departmentNameMap", departmentNameMap);
+        model.addAttribute("roleNameMap", roleNameMap);
+        model.addAttribute("statusMap", statusMap);
         model.addAttribute("page", page);
 
         return "modules/personnel/entryList";
@@ -79,12 +88,21 @@ public class PersonnelController extends BaseController {
 
     @RequestMapping(value = "/entryAdd", method = RequestMethod.GET)
     public String entryAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
-
+        List<Role> roleList = roleService.getRoles(null);
+        model.addAttribute("roleList", roleList);
         return "modules/personnel/entryAdd";
     }
 
     @RequestMapping(value = "/entryDetail", method = RequestMethod.GET)
-    public String entryDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value = "id", required = true) String id) {
+    public String entryDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value = "id", required = true) Long id) {
+        Staff staff = personnelService.getStaff(id);
+
+        Department department = departmentService.getDepartment(staff.getDepartment());
+        Role role = roleService.getRoleById(staff.getRole());
+        staff.setDepartment(department.getName());
+        staff.setRole(role.getName());
+
+        model.addAttribute("staff", staff);
 
         return "modules/personnel/entryDetail";
     }
@@ -92,8 +110,10 @@ public class PersonnelController extends BaseController {
     @RequestMapping(value = "/entrySave", method = RequestMethod.POST)
     public String entrySave(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam(value = "name", required = true) String name, @RequestParam(value = "department", required = true) String department,
-            @RequestParam(value = "phone", required = true) String phone, @RequestParam(value = "idNum", required = true) String idNum,
+            @RequestParam(value = "role", required = true) String role, @RequestParam(value = "phone", required = true) String phone,
+            @RequestParam(value = "idNum", required = true) String idNum,
             @RequestParam(value = "isSoldier", required = true) String isSoldier, @RequestParam(value = "entryDate", required = true) Date entryDate,
+            @RequestParam(value = "birthday", required = true) Date birthday,
             @RequestParam(value = "photo", required = true) CommonsMultipartFile photo,
             @RequestParam(value = "idPhotoAbove", required = true) CommonsMultipartFile idPhotoAbove,
             @RequestParam(value = "idPhotoBack", required = true) CommonsMultipartFile idPhotoBack,
@@ -104,11 +124,12 @@ public class PersonnelController extends BaseController {
         Staff staff = new Staff();
         staff.setName(name);
         staff.setDepartment(department);
+        staff.setRole(role);
         staff.setPhone(phone);
         staff.setIdNum(idNum);
         staff.setIsSoldier("0".equals(isSoldier.trim()) ? true : false);
         staff.setEntryDate(entryDate);
-        
+        staff.setBirthday(birthday);
         if(photo != null){
             staff.setPhoto(uploadImg(request, photo));
         }
