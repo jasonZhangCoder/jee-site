@@ -32,7 +32,7 @@ public class PersonnelService implements IPersonnelService {
             criteria.andEntryDateLessThanOrEqualTo(search.getEntryDateEnd());
         }
         if(StringUtils.isNotEmpty(search.getName())){
-            criteria.andNameLike(" '%" + search.getName().trim() + "%'");
+            criteria.andNameLike(" %" + search.getName().trim() + "% ");
         }
         example.setLimit(new Limit(search.getStart(), search.getMaxRows()));
         example.setOrderByClause(" create_time desc ");
@@ -50,7 +50,7 @@ public class PersonnelService implements IPersonnelService {
             criteria.andEntryDateLessThanOrEqualTo(search.getEntryDateEnd());
         }
         if (StringUtils.isNotEmpty(search.getName())) {
-            criteria.andNameLike(" %" + search.getName() + "%");
+            criteria.andNameLike(" %" + search.getName() + "% ");
         }
         return staffMapper.countByExample(example);
     }
