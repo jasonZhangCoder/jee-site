@@ -56,7 +56,7 @@ public class PersonnelService implements IPersonnelService {
     }
 
     @Override
-    public void addStaff(Staff staff, String operator) {
+    public long addStaff(Staff staff, String operator) {
 
         staff.setStatus(StaffStatus.APPLYING.getValue());
         staff.setCreateTime(new Date());
@@ -64,11 +64,18 @@ public class PersonnelService implements IPersonnelService {
         staff.setUpdateTime(new Date());
         staff.setUpdateUserId(operator);
         staffMapper.insertSelective(staff);
+        return staff.getId();
     }
 
     @Override
     public Staff getStaff(long id) {
         return staffMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateStaffStatus(long staffId, String reason) {
+        // TODO Auto-generated method stub
+
     }
 
 }

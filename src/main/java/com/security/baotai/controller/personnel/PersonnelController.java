@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.security.baotai.bean.ProcessDefinitionKeyEnum;
 import com.security.baotai.bean.StaffSearch;
 import com.security.baotai.bean.StaffStatus;
+import com.security.baotai.bean.StaffVo;
 import com.security.baotai.core.util.Page;
 import com.security.baotai.model.department.Department;
 import com.security.baotai.model.personnel.Staff;
 import com.security.baotai.model.role.Role;
+import com.security.baotai.service.activiti.IActivitiService;
 import com.security.baotai.service.department.IDepartmentService;
 import com.security.baotai.service.personnel.IPersonnelService;
 import com.security.baotai.service.role.IRoleService;
@@ -42,6 +48,8 @@ public class PersonnelController extends BaseController {
     private IDepartmentService departmentService;
     @Autowired
     private IRoleService roleService;
+    @Autowired
+    private IActivitiService activitiService;
 
     private static final String imgPath = "/upload/";
 
@@ -142,9 +150,92 @@ public class PersonnelController extends BaseController {
         if (politicalExamination != null) {
             staff.setPoliticalExamination(uploadImg(request, politicalExamination));
         }
-        personnelService.addStaff(staff, userId);
+        long staffId = personnelService.addStaff(staff, userId);
         model.addAttribute("message", "操作成功");
+
+        Map<String, Object> variables = new HashMap<String, Object>();
+        variables.put("managers", "yayunjingli");
+        activitiService.startProcess(ProcessDefinitionKeyEnum.ENTRY.getProcessDefinitionKey(), getBusinessKey(String.valueOf(staffId), userId), variables);
+
         return entry(request, response, model);
+    }
+    
+    @RequestMapping(value = "/entryTodo", method = RequestMethod.GET)
+    public String entryTodo(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        return "modules/personnel/entryTodo";
+    }
+
+    @RequestMapping(value = "/entryTodoList", method = RequestMethod.GET)
+    public String entryTodoList(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        String loginName = UserUtils.getUser().getLoginName();
+
+        List<Task> list = activitiService.getTasks(ProcessDefinitionKeyEnum.ENTRY.getProcessDefinitionKey(), loginName);
+
+        List<StaffVo> staffList = new ArrayList<StaffVo>();
+        List<String> departmentIds = new ArrayList<String>();
+        for (Task task : list) {
+            ProcessInstance pi = activitiService.getProcessInstance(task.getProcessInstanceId());
+            String staffId = getValueFromBusinessKey(pi.getBusinessKey(), 0);
+
+            StaffVo vo = new StaffVo();
+            Staff staff = personnelService.getStaff(Long.valueOf(staffId));
+            vo.setDepartment(staff.getDepartment());
+            vo.setId(staff.getId());
+            vo.setName(staff.getName());
+            vo.setIdNum(staff.getIdNum());
+            vo.setPhone(staff.getPhone());
+            vo.setBirthday(staff.getBirthday());
+            vo.setEntryDate(staff.getEntryDate());
+            vo.setRole(staff.getRole());
+            vo.setApplyUser(UserUtils.get(getValueFromBusinessKey(pi.getBusinessKey(), 1)).getName());
+            vo.setStatus(staff.getStatus());
+            vo.setTaskId(task.getId());
+            vo.setProcessDefinitionId(task.getProcessDefinitionId());
+            vo.setProcessInstanceId(task.getProcessInstanceId());
+            departmentIds.add(staff.getDepartment());
+            staffList.add(vo);
+        }
+        Map<String, String> departmentNameMap = departmentService.getDepartmentNameMap(departmentIds);
+        Map<String, String> roleNameMap = roleService.getAllRoleName(null);
+
+        model.addAttribute("staffList", staffList);
+        model.addAttribute("departmentNameMap", departmentNameMap);
+        model.addAttribute("roleNameMap", roleNameMap);
+
+        return "modules/personnel/entryTodoList";
+    }
+
+    @RequestMapping(value = "/auditPage", method = RequestMethod.GET)
+    public String auditPage(HttpServletRequest request, HttpServletResponse response, Model model,
+            @RequestParam(value = "taskId", required = true) String taskId, @RequestParam(value = "staffId", required = true) long staffId) {
+
+        Staff staff = personnelService.getStaff(staffId);
+
+        Department department = departmentService.getDepartment(staff.getDepartment());
+        Role role = roleService.getRoleById(staff.getRole());
+        staff.setDepartment(department.getName());
+        staff.setRole(role.getName());
+
+        model.addAttribute("staff", staff);
+
+        model.addAttribute("taskId", taskId);
+
+        return "modules/personnel/auditPage";
+    }
+
+    @RequestMapping(value = "/completeTask", method = RequestMethod.POST)
+    public String completeTask(HttpServletRequest request, HttpServletResponse response, Model model,
+            @RequestParam(value = "taskId", required = true) String taskId, @RequestParam(value = "reason", required = true) String reason,
+            @RequestParam(value = "status", required = true) Integer status) {
+        
+        model.addAttribute("taskId", taskId);
+        Map<String, Object> variables = new HashMap<String, Object>();
+        variables.put("hr", "hr");
+        model.addAttribute("message", "操作成功");
+        activitiService.completeTask(taskId, variables);
+        return entryTodoList(request, response, model);
     }
 
     private String uploadImg(HttpServletRequest request, CommonsMultipartFile file) throws IOException {

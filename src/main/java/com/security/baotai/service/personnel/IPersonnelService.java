@@ -11,7 +11,9 @@ public interface IPersonnelService {
 
     int countStaff(StaffSearch search);
 
-    void addStaff(Staff staff, String operator);
+    long addStaff(Staff staff, String operator);
 
     Staff getStaff(long id);
+
+    void updateStaffStatus(long staffId, String reason);
 }

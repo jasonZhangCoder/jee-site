@@ -43,6 +43,7 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 
 /**
  * 流程定义相关Controller
+ * 
  * @author ThinkGem
  * @version 2013-11-03
  */
@@ -56,8 +57,8 @@ public class ActProcessService extends BaseService {
 	private RuntimeService runtimeService;
 
 	/**
-	 * 流程定义列表
-	 */
+     * 流程定义列表
+     */
 	public Page<Object[]> processList(Page<Object[]> page, String category) {
 
 	    ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery()
@@ -80,8 +81,8 @@ public class ActProcessService extends BaseService {
 	}
 
 	/**
-	 * 流程定义列表
-	 */
+     * 流程定义列表
+     */
 	public Page<ProcessInstance> runningList(Page<ProcessInstance> page, String procInsId, String procDefKey) {
 
 	    ProcessInstanceQuery processInstanceQuery = runtimeService.createProcessInstanceQuery();
@@ -100,11 +101,12 @@ public class ActProcessService extends BaseService {
 	}
 	
 	/**
-	 * 读取资源，通过部署ID
-	 * @param processDefinitionId  流程定义ID
-	 * @param processInstanceId 流程实例ID
-	 * @param resourceType 资源类型(xml|image)
-	 */
+     * 读取资源，通过部署ID
+     * 
+     * @param processDefinitionId 流程定义ID
+     * @param processInstanceId 流程实例ID
+     * @param resourceType 资源类型(xml|image)
+     */
 	public InputStream resourceRead(String procDefId, String proInsId, String resType) throws Exception {
 		
 		if (StringUtils.isBlank(procDefId)){
@@ -125,10 +127,11 @@ public class ActProcessService extends BaseService {
 	}
 	
 	/**
-	 * 部署流程 - 保存
-	 * @param file
-	 * @return
-	 */
+     * 部署流程 - 保存
+     * 
+     * @param file
+     * @return
+     */
 	@Transactional(readOnly = false)
 	public String deploy(String exportDir, String category, MultipartFile file) {
 
@@ -147,61 +150,62 @@ public class ActProcessService extends BaseService {
 				deployment = repositoryService.createDeployment().addInputStream(fileName, fileInputStream).deploy();
 			} else if (fileName.indexOf("bpmn20.xml") != -1) {
 				deployment = repositoryService.createDeployment().addInputStream(fileName, fileInputStream).deploy();
-			} else if (extension.equals("bpmn")) { // bpmn扩展名特殊处理，转换为bpmn20.xml
+            } else if (extension.equals("bpmn")) { // bpmn扩展名特殊处理，转换为bpmn20.xml
 				String baseName = FilenameUtils.getBaseName(fileName); 
 				deployment = repositoryService.createDeployment().addInputStream(baseName + ".bpmn20.xml", fileInputStream).deploy();
 			} else {
-				message = "不支持的文件类型：" + extension;
+                message = "不支持的文件类型：" + extension;
 			}
 			
 			List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().deploymentId(deployment.getId()).list();
 
-			// 设置流程分类
+            // 设置流程分类
 			for (ProcessDefinition processDefinition : list) {
 //					ActUtils.exportDiagramToFile(repositoryService, processDefinition, exportDir);
 				repositoryService.setProcessDefinitionCategory(processDefinition.getId(), category);
-				message += "部署成功，流程ID=" + processDefinition.getId() + "<br/>";
+                message += "部署成功，流程ID=" + processDefinition.getId() + "<br/>";
 			}
 			
 			if (list.size() == 0){
-				message = "部署失败，没有流程。";
+                message = "部署失败，没有流程。";
 			}
 			
 		} catch (Exception e) {
-			throw new ActivitiException("部署失败！", e);
+            throw new ActivitiException("部署失败！", e);
 		}
 		return message;
 	}
 	
 	/**
-	 * 设置流程分类
-	 */
+     * 设置流程分类
+     */
 	@Transactional(readOnly = false)
 	public void updateCategory(String procDefId, String category) {
 		repositoryService.setProcessDefinitionCategory(procDefId, category);
 	}
 
 	/**
-	 * 挂起、激活流程实例
-	 */
+     * 挂起、激活流程实例
+     */
 	@Transactional(readOnly = false)
 	public String updateState(String state, String procDefId) {
 		if (state.equals("active")) {
 			repositoryService.activateProcessDefinitionById(procDefId, true, null);
-			return "已激活ID为[" + procDefId + "]的流程定义。";
+            return "已激活ID为[" + procDefId + "]的流程定义。";
 		} else if (state.equals("suspend")) {
 			repositoryService.suspendProcessDefinitionById(procDefId, true, null);
-			return "已挂起ID为[" + procDefId + "]的流程定义。";
+            return "已挂起ID为[" + procDefId + "]的流程定义。";
 		}
-		return "无操作";
+        return "无操作";
 	}
 	
 	/**
-	 * 将部署的流程转换为模型
-	 * @param procDefId
-	 * @throws UnsupportedEncodingException
-	 * @throws XMLStreamException
-	 */
+     * 将部署的流程转换为模型
+     * 
+     * @param procDefId
+     * @throws UnsupportedEncodingException
+     * @throws XMLStreamException
+     */
 	@Transactional(readOnly = false)
 	public org.activiti.engine.repository.Model convertToModel(String procDefId) throws UnsupportedEncodingException, XMLStreamException {
 		
@@ -221,7 +225,7 @@ public class ActProcessService extends BaseService {
 		modelData.setCategory(processDefinition.getCategory());//.getDeploymentId());
 		modelData.setDeploymentId(processDefinition.getDeploymentId());
 		modelData.setVersion(Integer.parseInt(String.valueOf(repositoryService.createModelQuery().modelKey(modelData.getKey()).count()+1)));
-	
+
 		ObjectNode modelObjectNode = new ObjectMapper().createObjectNode();
 		modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, processDefinition.getName());
 		modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, modelData.getVersion());
@@ -236,8 +240,8 @@ public class ActProcessService extends BaseService {
 	}
 	
 	/**
-	 * 导出图片文件到硬盘
-	 */
+     * 导出图片文件到硬盘
+     */
 	public List<String> exportDiagrams(String exportDir) throws IOException {
 		List<String> files = new ArrayList<String>();
 		List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
@@ -265,9 +269,9 @@ public class ActProcessService extends BaseService {
 			diagramPath = diagramDir + "/" + diagramResourceName;
 			File file = new File(diagramPath);
 
-			// 文件存在退出
+            // 文件存在退出
 			if (file.exists()) {
-				// 文件大小相同时直接返回否则重新创建文件(可能损坏)
+                // 文件大小相同时直接返回否则重新创建文件(可能损坏)
 				logger.debug("diagram exist, ignore... : {}", diagramPath);
 				
 				files.add(diagramPath);
@@ -287,19 +291,21 @@ public class ActProcessService extends BaseService {
 	}
 
 	/**
-	 * 删除部署的流程，级联删除流程实例
-	 * @param deploymentId 流程部署ID
-	 */
+     * 删除部署的流程，级联删除流程实例
+     * 
+     * @param deploymentId 流程部署ID
+     */
 	@Transactional(readOnly = false)
 	public void deleteDeployment(String deploymentId) {
 		repositoryService.deleteDeployment(deploymentId, true);
 	}
 	
 	/**
-	 * 删除部署的流程实例
-	 * @param procInsId 流程实例ID
-	 * @param deleteReason 删除原因，可为空
-	 */
+     * 删除部署的流程实例
+     * 
+     * @param procInsId 流程实例ID
+     * @param deleteReason 删除原因，可为空
+     */
 	@Transactional(readOnly = false)
 	public void deleteProcIns(String procInsId, String deleteReason) {
 		runtimeService.deleteProcessInstance(procInsId, deleteReason);
