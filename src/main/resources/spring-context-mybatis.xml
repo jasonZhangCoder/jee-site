@@ -13,7 +13,7 @@
         
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:jeesite.properties" />
 	
-	<bean id="newDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+	<!-- <bean id="newDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
     	<property name="uniqueResourceName" value="baotai"/>
     	<property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource"/>
     	<property name="xaProperties">
@@ -29,10 +29,10 @@
     	<property name="reapTimeout" value="${atomikos.reapTimeout}" />
     	<property name="maxIdleTime" value="${atomikos.maxIdleTime}" />
     	<property name="maintenanceInterval" value="${atomikos.maintenanceInterval}" />
-	</bean>
+	</bean> -->
 	
 	<bean id="newSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="newDataSource" />
+		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:mybatis/sqlmap/*/*.xml</value>
@@ -40,16 +40,15 @@
 		</property>
 	</bean>
 
-	<bean id="newSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+<!-- 	<bean id="newSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="newSqlSessionFactory" />
 		<constructor-arg index="1" value="SIMPLE" />
-	</bean>
+	</bean> -->
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="newSqlSessionFactory" />
 		<property name="basePackage"
-		    value="com.security.baotai.mapper.*
-		    ">
+		    value="com.security.baotai.mapper.*">
 		</property>
 	</bean>
 	
